@@ -49,7 +49,6 @@ window.renderStatistics = function (ctx, players, times) {
   renderTitle(ctx, TITLE_X, TITLE_Y, BLACK_COLOR, 'Ура вы победили!');
   renderTitle(ctx, TITLE_X, TITLE_Y + TITLE_GAP, BLACK_COLOR, 'Список результатов:');
 
-  ctx.fillStyle = BLACK_COLOR;
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < players.length; i++) {
