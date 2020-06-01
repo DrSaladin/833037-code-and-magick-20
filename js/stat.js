@@ -38,10 +38,8 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
-var getRandom = function (min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+var getRandomNumber = function (min, max) {
+  return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min))) + Math.ceil(min);
 };
 
 window.renderStatistics = function (ctx, players, times) {
@@ -56,11 +54,11 @@ window.renderStatistics = function (ctx, players, times) {
 
   for (var i = 0; i < players.length; i++) {
 
-    ctx.fillStyle = 'hsl(235, ' + getRandom(1, 100) + '%,' + ' 27%)';
-    ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, 240, BAR_WIDTH, barHeight * -1 * times[i] / maxTime);
-
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+      ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, 240, BAR_WIDTH, barHeight * -1 * times[i] / maxTime);
+    } else {
+      ctx.fillStyle = 'hsl(235, ' + getRandomNumber(1, 100) + '%,' + ' 27%)';
       ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, 240, BAR_WIDTH, barHeight * -1 * times[i] / maxTime);
     }
 
