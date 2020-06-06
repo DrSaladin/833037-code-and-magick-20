@@ -1,9 +1,9 @@
 'use strict';
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита'];
-var WIZARD_FAMILYNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var WIZARD_EYESCOLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-var WIZARD_COATCOLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var WIZARD_FAMILY_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 
 document.querySelector('.setup-similar').classList.remove('hidden');
 
@@ -21,27 +21,27 @@ var getArrayRandElement = function (array) {
 var wizards = [
   {
     name: getArrayRandElement(WIZARD_NAMES),
-    familyName: getArrayRandElement(WIZARD_FAMILYNAMES),
-    coatColor: getArrayRandElement(WIZARD_COATCOLOR),
-    eyesColor: getArrayRandElement(WIZARD_EYESCOLOR),
+    familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
+    coatColor: getArrayRandElement(WIZARD_COAT_COLOR),
+    eyesColor: getArrayRandElement(WIZARD_EYES_COLOR),
   },
   {
     name: getArrayRandElement(WIZARD_NAMES),
-    familyName: getArrayRandElement(WIZARD_FAMILYNAMES),
-    coatColor: getArrayRandElement(WIZARD_COATCOLOR),
-    eyesColor: getArrayRandElement(WIZARD_EYESCOLOR),
+    familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
+    coatColor: getArrayRandElement(WIZARD_COAT_COLOR),
+    eyesColor: getArrayRandElement(WIZARD_EYES_COLOR),
   },
   {
     name: getArrayRandElement(WIZARD_NAMES),
-    familyName: getArrayRandElement(WIZARD_FAMILYNAMES),
-    coatColor: getArrayRandElement(WIZARD_COATCOLOR),
-    eyesColor: getArrayRandElement(WIZARD_EYESCOLOR),
+    familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
+    coatColor: getArrayRandElement(WIZARD_COAT_COLOR),
+    eyesColor: getArrayRandElement(WIZARD_EYES_COLOR),
   },
   {
     name: getArrayRandElement(WIZARD_NAMES),
-    familyName: getArrayRandElement(WIZARD_FAMILYNAMES),
-    coatColor: getArrayRandElement(WIZARD_COATCOLOR),
-    eyesColor: getArrayRandElement(WIZARD_EYESCOLOR),
+    familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
+    coatColor: getArrayRandElement(WIZARD_COAT_COLOR),
+    eyesColor: getArrayRandElement(WIZARD_EYES_COLOR),
   }
 ];
 
@@ -56,9 +56,10 @@ var renderWizard = function (wizard) {
 };
 
 var closeButton = document.querySelector('.setup-close');
-closeButton.onclick = function () {
+closeButton.addEventListener('click', function (evt) {
+  evt.preventDefault();
   wizardWindow.classList.add('hidden');
-};
+});
 
 window.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
