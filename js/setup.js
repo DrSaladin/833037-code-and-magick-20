@@ -25,33 +25,25 @@ var wizards = [
     name: getArrayRandElement(WIZARD_NAMES),
     familyName: getArrayRandElement(WIZARD_FAMILYNAMES),
     coatColor: getArrayRandElement(WIZARD_COATCOLOR),
-    headColor: getArrayRandElement(WIZARD_HEAD),
     eyesColor: getArrayRandElement(WIZARD_EYESCOLOR),
-    handsColor: getArrayRandElement(WIZARD_HANDSCOLOR),
   },
   {
     name: getArrayRandElement(WIZARD_NAMES),
     familyName: getArrayRandElement(WIZARD_FAMILYNAMES),
     coatColor: getArrayRandElement(WIZARD_COATCOLOR),
-    headColor: getArrayRandElement(WIZARD_HEAD),
     eyesColor: getArrayRandElement(WIZARD_EYESCOLOR),
-    handsColor: getArrayRandElement(WIZARD_HANDSCOLOR),
   },
   {
     name: getArrayRandElement(WIZARD_NAMES),
     familyName: getArrayRandElement(WIZARD_FAMILYNAMES),
     coatColor: getArrayRandElement(WIZARD_COATCOLOR),
-    headColor: getArrayRandElement(WIZARD_HEAD),
     eyesColor: getArrayRandElement(WIZARD_EYESCOLOR),
-    handsColor: getArrayRandElement(WIZARD_HANDSCOLOR),
   },
   {
     name: getArrayRandElement(WIZARD_NAMES),
     familyName: getArrayRandElement(WIZARD_FAMILYNAMES),
     coatColor: getArrayRandElement(WIZARD_COATCOLOR),
-    headColor: getArrayRandElement(WIZARD_HEAD),
     eyesColor: getArrayRandElement(WIZARD_EYESCOLOR),
-    handsColor: getArrayRandElement(WIZARD_HANDSCOLOR),
   }
 ];
 
@@ -60,9 +52,7 @@ var renderWizard = function (wizard) {
 
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name + ' ' + wizard.familyName;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.headColor;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.eyesColor;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.handsColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
   return wizardElement;
 };
