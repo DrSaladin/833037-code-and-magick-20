@@ -3,8 +3,6 @@
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита'];
 var WIZARD_FAMILYNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_EYESCOLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-var WIZARD_HEAD = ['rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var WIZARD_HANDSCOLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)'];
 var WIZARD_COATCOLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 
 document.querySelector('.setup-similar').classList.remove('hidden');
@@ -15,9 +13,9 @@ var wizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
 
-var getArrayRandElement = function (arrey) {
-  var randonElement = Math.floor(Math.random() * arrey.length);
-  return arrey[randonElement];
+var getArrayRandElement = function (array) {
+  var randomElement = Math.floor(Math.random() * array.length);
+  return array[randomElement];
 };
 
 var wizards = [
