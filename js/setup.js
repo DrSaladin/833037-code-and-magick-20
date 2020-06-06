@@ -7,9 +7,6 @@ var WIZARD_HEAD = ['rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)
 var WIZARD_HANDSCOLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)'];
 var WIZARD_COATCOLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 
-var wizardWindow = document.querySelector('.setup');
-wizardWindow.classList.remove('hidden');
-
 document.querySelector('.setup-similar').classList.remove('hidden');
 
 var wizardList = document.querySelector('.setup-similar-list');
@@ -88,3 +85,6 @@ for (var i = 0; i < wizards.length; i++) {
 
 }
 wizardList.appendChild(fragment);
+
+var wizardWindow = document.querySelector('.setup');
+wizardWindow.classList.remove('hidden');
