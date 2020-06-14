@@ -89,7 +89,7 @@ if (wizardSetup.classList.contains('.hidden')) {
 
   fireball.addEventListener('click', function () {
     fireballColor.style.backgroundColor = getArrayRandElement(FIREBALL_COLORS);
-    fireballInput.value = covertToHex(fireballColor.style.backgroundColor);
+    fireballInput.value = fireballColor.style.backgroundColor;
   });
 
 
