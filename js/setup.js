@@ -10,6 +10,8 @@ var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 1
 var MIN_NAME_LENGTH = 2;
 var MAX_NAME_LENGTH = 25;
 
+var wizardQuantity = 4;
+
 var getArrayRandElement = function (array) {
   var randomElement = Math.floor(Math.random() * array.length);
   return array[randomElement];
@@ -25,42 +27,33 @@ var closeButton = document.querySelector('.setup-close');
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === 27) {
     evt.preventDefault();
-    closeWizardSetup();
+    toggleWizardSetup();
   }
 };
 
-
-var openWizardSetup = function () {
-  wizardSetup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
-};
-
-
-var closeWizardSetup = function () {
-  wizardSetup.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscPress);
-};
-
-
-openButton.addEventListener('click', function () {
-  openWizardSetup();
-});
-
-openButton.addEventListener('keydown', function (evt) {
+var onPopupEnterPress = function (evt) {
   if (evt.keyCode === 13) {
-    openWizardSetup();
+    toggleWizardSetup();
   }
-});
+};
 
-closeButton.addEventListener('click', function () {
-  closeWizardSetup();
-});
 
-closeButton.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) {
-    closeWizardSetup();
+var toggleWizardSetup = function () {
+  wizardSetup.classList.toggle('hidden');
+  if (wizardSetup.classList.contains('hidden')) {
+    document.removeEventListener('keydown', onPopupEscPress);
+  } else {
+    document.addEventListener('keydown', onPopupEscPress);
   }
-});
+};
+
+openButton.addEventListener('click', toggleWizardSetup);
+openButton.addEventListener('keydown', onPopupEnterPress);
+
+closeButton.setAttribute('tabindex', 0);
+closeButton.addEventListener('click', toggleWizardSetup);
+closeButton.addEventListener('keydown', onPopupEnterPress);
+
 
 var wizardCoatInput = document.querySelector('input[name = "coat-color"]');
 var wizardCoat = document.querySelector('.wizard-coat');
@@ -74,31 +67,33 @@ var wizardEyesInput = document.querySelector('input[name = "eyes-color"]');
 
 var wizardElements = ['wizardCoat', 'fireball', 'wizardEyes'];
 
+var toggleElementEvents = function () {
+  if (wizardSetup.classList.contains('.hidden')) {
+    for (var i = 0; i < wizardElements.length; i++) {
+      wizardElements[i].removeEventListener('click', function () { });
+    }
 
-if (wizardSetup.classList.contains('.hidden')) {
-  for (var i = 0; i < wizardElements.length; i++) {
-    wizardElements[i].removeEventListener('click', function () { });
+  } else {
+    wizardCoat.addEventListener('click', function () {
+      wizardCoat.style.fill = getArrayRandElement(WIZARD_COAT_COLORS);
+      wizardCoatInput.value = wizardCoat.style.fill;
+    });
+
+
+    fireball.addEventListener('click', function () {
+      fireballColor.style.backgroundColor = getArrayRandElement(FIREBALL_COLORS);
+      fireballInput.value = fireballColor.style.backgroundColor;
+    });
+
+
+    wizardEyes.addEventListener('click', function () {
+      wizardEyes.style.fill = getArrayRandElement(WIZARD_EYE_COLORS);
+      wizardEyesInput.value = wizardEyes.style.fill;
+    });
   }
+};
 
-} else {
-  wizardCoat.addEventListener('click', function () {
-    wizardCoat.style.fill = getArrayRandElement(WIZARD_COAT_COLORS);
-    wizardCoatInput.value = wizardCoat.style.fill;
-  });
-
-
-  fireball.addEventListener('click', function () {
-    fireballColor.style.backgroundColor = getArrayRandElement(FIREBALL_COLORS);
-    fireballInput.value = fireballColor.style.backgroundColor;
-  });
-
-
-  wizardEyes.addEventListener('click', function () {
-    wizardEyes.style.fill = getArrayRandElement(WIZARD_EYE_COLORS);
-    wizardEyesInput.value = wizardEyes.style.fill;
-  });
-}
-
+toggleElementEvents();
 
 var wizardList = document.querySelector('.setup-similar-list');
 
@@ -107,32 +102,20 @@ var wizardTemplate = document.querySelector('#similar-wizard-template')
   .querySelector('.setup-similar-item');
 
 
-var wizards = [
-  {
-    name: getArrayRandElement(WIZARD_NAMES),
-    familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
-    coatColor: getArrayRandElement(WIZARD_COAT_COLORS),
-    eyesColor: getArrayRandElement(WIZARD_EYE_COLORS),
-  },
-  {
-    name: getArrayRandElement(WIZARD_NAMES),
-    familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
-    coatColor: getArrayRandElement(WIZARD_COAT_COLORS),
-    eyesColor: getArrayRandElement(WIZARD_EYE_COLORS),
-  },
-  {
-    name: getArrayRandElement(WIZARD_NAMES),
-    familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
-    coatColor: getArrayRandElement(WIZARD_COAT_COLORS),
-    eyesColor: getArrayRandElement(WIZARD_EYE_COLORS),
-  },
-  {
-    name: getArrayRandElement(WIZARD_NAMES),
-    familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
-    coatColor: getArrayRandElement(WIZARD_COAT_COLORS),
-    eyesColor: getArrayRandElement(WIZARD_EYE_COLORS),
+var createWizard = function (quantity) {
+  var wizardOptions = [];
+  for (var i = 0; i < quantity; i++) {
+    var wizard = {
+      name: getArrayRandElement(WIZARD_NAMES),
+      familyName: getArrayRandElement(WIZARD_FAMILY_NAMES),
+      coatColor: getArrayRandElement(WIZARD_COAT_COLORS),
+      eyesColor: getArrayRandElement(WIZARD_EYE_COLORS),
+    };
+    wizardOptions.push(wizard);
   }
-];
+  return wizardOptions;
+};
+
 
 var renderWizard = function (wizard) {
   var wizardElement = wizardTemplate.cloneNode(true);
@@ -145,14 +128,17 @@ var renderWizard = function (wizard) {
 };
 
 var fragment = document.createDocumentFragment();
-for (var j = 0; j < wizards.length; j++) {
-  fragment.appendChild(renderWizard(wizards[j]));
+for (var i = 0; i < createWizard(wizardQuantity).length; i++) {
+  fragment.appendChild(renderWizard(createWizard(wizardQuantity)[i]));
 
 }
 
 wizardList.appendChild(fragment);
 
 var userNameInput = document.querySelector('.setup-user-name');
+userNameInput.setAttribute('minlength', MIN_NAME_LENGTH);
+userNameInput.setAttribute('maxlength', MAX_NAME_LENGTH);
+userNameInput.setAttribute('required', true);
 
 userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.valueMissing) {
