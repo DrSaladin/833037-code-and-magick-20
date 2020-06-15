@@ -130,7 +130,6 @@ var renderWizard = function (wizard) {
 var fragment = document.createDocumentFragment();
 for (var i = 0; i < createWizard(wizardQuantity).length; i++) {
   fragment.appendChild(renderWizard(createWizard(wizardQuantity)[i]));
-
 }
 
 wizardList.appendChild(fragment);
