@@ -47,6 +47,7 @@ var toggleWizardSetup = function () {
   }
 };
 
+
 openButton.addEventListener('click', toggleWizardSetup);
 openButton.addEventListener('keydown', onPopupEnterPress);
 
@@ -54,6 +55,8 @@ closeButton.setAttribute('tabindex', 0);
 closeButton.addEventListener('click', toggleWizardSetup);
 closeButton.addEventListener('keydown', onPopupEnterPress);
 
+var formOpenIcon = document.querySelector('.setup-open-icon');
+formOpenIcon.setAttribute('tabindex', 0);
 
 var wizardCoatInput = document.querySelector('input[name = "coat-color"]');
 var wizardCoat = document.querySelector('.wizard-coat');
@@ -65,33 +68,35 @@ var fireballInput = document.querySelector('input[name = "fireball-color"]');
 var wizardEyes = document.querySelector('.wizard-eyes');
 var wizardEyesInput = document.querySelector('input[name = "eyes-color"]');
 
-var wizardElements = ['wizardCoat', 'fireball', 'wizardEyes'];
+
+var onCoatPress = function () {
+  wizardCoat.style.fill = getArrayRandElement(WIZARD_COAT_COLORS);
+  wizardCoatInput.value = wizardCoat.style.fill;
+};
+
+var onEyePress = function () {
+  wizardEyes.style.fill = getArrayRandElement(WIZARD_EYE_COLORS);
+  wizardEyesInput.value = wizardEyes.style.fill;
+};
+
+var onFireballPress = function () {
+  fireballColor.style.backgroundColor = getArrayRandElement(FIREBALL_COLORS);
+  fireballInput.value = fireballColor.style.backgroundColor;
+};
+
 
 var toggleElementEvents = function () {
   if (wizardSetup.classList.contains('.hidden')) {
-    for (var i = 0; i < wizardElements.length; i++) {
-      wizardElements[i].removeEventListener('click', function () { });
-    }
-
+    wizardCoat.removeEventListener('click', onCoatPress);
+    fireball.removeEventListener('click', onFireballPress);
+    wizardEyes.removeEventListener('click', onEyePress);
   } else {
-    wizardCoat.addEventListener('click', function () {
-      wizardCoat.style.fill = getArrayRandElement(WIZARD_COAT_COLORS);
-      wizardCoatInput.value = wizardCoat.style.fill;
-    });
-
-
-    fireball.addEventListener('click', function () {
-      fireballColor.style.backgroundColor = getArrayRandElement(FIREBALL_COLORS);
-      fireballInput.value = fireballColor.style.backgroundColor;
-    });
-
-
-    wizardEyes.addEventListener('click', function () {
-      wizardEyes.style.fill = getArrayRandElement(WIZARD_EYE_COLORS);
-      wizardEyesInput.value = wizardEyes.style.fill;
-    });
+    wizardCoat.addEventListener('click', onCoatPress);
+    fireball.addEventListener('click', onFireballPress);
+    wizardEyes.addEventListener('click', onEyePress);
   }
 };
+
 
 toggleElementEvents();
 
@@ -134,10 +139,15 @@ for (var i = 0; i < createWizard(wizardQuantity).length; i++) {
 
 wizardList.appendChild(fragment);
 
+var setupForm = document.querySelector('.setup-wizard-form');
+setupForm.setAttribute('action', 'https://javascript.pages.academy/code-and-magick');
+
+var userAvatar = document.querySelector('input[name = "avatar"]');
+userAvatar.setAttribute('accept', 'image/png, image/jpeg');
+
 var userNameInput = document.querySelector('.setup-user-name');
 userNameInput.setAttribute('minlength', MIN_NAME_LENGTH);
-userNameInput.setAttribute('maxlength', MAX_NAME_LENGTH);
-userNameInput.setAttribute('required', true);
+
 
 userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.valueMissing) {
