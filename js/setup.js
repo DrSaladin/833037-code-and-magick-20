@@ -86,7 +86,7 @@ var onFireballPress = function () {
 
 
 var toggleElementEvents = function () {
-  if (wizardSetup.classList.contains('.hidden')) {
+  if (wizardSetup.classList.contains('hidden')) {
     wizardCoat.removeEventListener('click', onCoatPress);
     fireball.removeEventListener('click', onFireballPress);
     wizardEyes.removeEventListener('click', onEyePress);
