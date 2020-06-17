@@ -90,11 +90,10 @@ var toggleElementEvents = function () {
     wizardCoat.removeEventListener('click', onCoatPress);
     fireball.removeEventListener('click', onFireballPress);
     wizardEyes.removeEventListener('click', onEyePress);
-  } else {
-    wizardCoat.addEventListener('click', onCoatPress);
-    fireball.addEventListener('click', onFireballPress);
-    wizardEyes.addEventListener('click', onEyePress);
   }
+  wizardCoat.addEventListener('click', onCoatPress);
+  fireball.addEventListener('click', onFireballPress);
+  wizardEyes.addEventListener('click', onEyePress);
 };
 
 
