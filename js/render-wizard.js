@@ -2,7 +2,7 @@
 
 (function () {
 
-  var wizardSetup = document.querySelector('.setup'); // убрать потом
+  var wizardSetup = document.querySelector('.setup');
   var wizardCoatInput = document.querySelector('input[name = "coat-color"]');
   var wizardCoat = document.querySelector('.wizard-coat');
 
@@ -20,37 +20,20 @@
     }
     elementTitle.style.fill = window.utility.getArrayRandElement(arraySource);
     elementInput.value = elementTitle.style.fill;
+    return function () {
+      onElementPress(elementTitle, arraySource, elementInput);
+    };
   };
-
-  onElementPress(wizardCoat, window.utility.WIZARD_COAT_COLORS, wizardCoatInput);
-  onElementPress(wizardEyes, window.utility.WIZARD_EYE_COLORS, wizardEyesInput);
-  onElementPress(fireballColor, window.utility.FIREBALL_COLORS, fireballInput);
-
-  var onCoatPress = function () {
-    wizardCoat.style.fill = window.utility.getArrayRandElement(window.utility.WIZARD_COAT_COLORS);
-    wizardCoatInput.value = wizardCoat.style.fill;
-  };
-
-  var onEyePress = function () {
-    wizardEyes.style.fill = window.utility.getArrayRandElement(window.utility.WIZARD_EYE_COLORS);
-    wizardEyesInput.value = wizardEyes.style.fill;
-  };
-
-  var onFireballPress = function () {
-    fireballColor.style.backgroundColor = window.utility.getArrayRandElement(window.utility.FIREBALL_COLORS);
-    fireballInput.value = fireballColor.style.backgroundColor;
-  };
-
 
   var toggleElementEvents = function () {
     if (wizardSetup.classList.contains('hidden')) {
-      wizardCoat.removeEventListener('click', onCoatPress);
-      fireball.removeEventListener('click', onFireballPress);
-      wizardEyes.removeEventListener('click', onEyePress);
+      wizardCoat.removeEventListener('click', onElementPress(wizardCoat, window.utility.WIZARD_COAT_COLORS, wizardCoatInput));
+      fireball.removeEventListener('click', onElementPress(fireballColor, window.utility.FIREBALL_COLORS, fireballInput));
+      wizardEyes.removeEventListener('click', onElementPress(wizardEyes, window.utility.WIZARD_EYE_COLORS, wizardEyesInput));
     }
-    wizardCoat.addEventListener('click', onCoatPress);
-    fireball.addEventListener('click', onFireballPress);
-    wizardEyes.addEventListener('click', onEyePress);
+    wizardCoat.addEventListener('click', onElementPress(wizardCoat, window.utility.WIZARD_COAT_COLORS, wizardCoatInput));
+    fireball.addEventListener('click', onElementPress(fireballColor, window.utility.FIREBALL_COLORS, fireballInput));
+    wizardEyes.addEventListener('click', onElementPress(wizardEyes, window.utility.WIZARD_EYE_COLORS, wizardEyesInput));
   };
 
   toggleElementEvents();

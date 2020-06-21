@@ -20,7 +20,6 @@
       y: evt.clientY
     };
 
-
     var dragged = false;
 
     var onMouseMove = function (moveEvt) {
