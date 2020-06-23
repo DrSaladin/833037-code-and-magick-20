@@ -2,32 +2,32 @@
 
 (function () {
   var setupForm = document.querySelector('.setup-wizard-form');
-  window.utility.setAttribute(setupForm, 'action', 'https://javascript.pages.academy/code-and-magick');
+  window.utils.setAttribute(setupForm, 'action', 'https://javascript.pages.academy/code-and-magick');
 
   var userAvatar = setupForm.querySelector('input[name = "avatar"]');
-  window.utility.setAttribute(userAvatar, 'accept', 'image/png, image/jpeg');
+  window.utils.setAttribute(userAvatar, 'accept', 'image/png, image/jpeg');
 
-  var userNameInput = setupForm.querySelector('.setup-user-name');
-  window.utility.setAttribute(userNameInput, 'minlength', window.utility.MIN_NAME_LENGTH);
+  var inputUserName = setupForm.querySelector('.setup-user-name');
+  window.utils.setAttribute(inputUserName, 'minlength', window.utils.MIN_NAME_LENGTH);
 
 
-  userNameInput.addEventListener('invalid', function () {
-    if (userNameInput.validity.valueMissing) {
-      userNameInput.setCustomValidity('Обязательное поле');
+  inputUserName.addEventListener('invalid', function () {
+    if (inputUserName.validity.valueMissing) {
+      inputUserName.setCustomValidity('Обязательное поле');
     } else {
-      userNameInput.setCustomValidity('');
+      inputUserName.setCustomValidity('');
     }
   });
 
-  userNameInput.addEventListener('input', function () {
-    var valueLength = userNameInput.value.length;
+  inputUserName.addEventListener('input', function () {
+    var valueLength = inputUserName.value.length;
 
-    if (valueLength < window.utility.MIN_NAME_LENGTH) {
-      userNameInput.setCustomValidity('Ещё ' + (window.utility.MIN_NAME_LENGTH - valueLength) + ' симв.');
-    } else if (valueLength > window.utility.MAX_NAME_LENGTH) {
-      userNameInput.setCustomValidity('Удалите лишние ' + (valueLength - window.utility.MAX_NAME_LENGTH) + ' симв.');
+    if (valueLength < window.utils.MIN_NAME_LENGTH) {
+      inputUserName.setCustomValidity('Ещё ' + (window.utils.MIN_NAME_LENGTH - valueLength) + ' симв.');
+    } else if (valueLength > window.utils.MAX_NAME_LENGTH) {
+      inputUserName.setCustomValidity('Удалите лишние ' + (valueLength - window.utils.MAX_NAME_LENGTH) + ' симв.');
     } else {
-      userNameInput.setCustomValidity('');
+      inputUserName.setCustomValidity('');
     }
   });
 })();

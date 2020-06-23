@@ -20,7 +20,7 @@
     element.setAttribute(attrTitle, attrData);
   };
 
-  window.utility = {
+  window.utils = {
     WIZARD_NAMES: WIZARD_NAMES,
     WIZARD_FAMILY_NAMES: WIZARD_FAMILY_NAMES,
     FIREBALL_COLORS: FIREBALL_COLORS,
