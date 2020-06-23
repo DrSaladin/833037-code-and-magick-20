@@ -1,6 +1,5 @@
 'use strict';
 
-
 (function () {
 
   var wizardSetup = document.querySelector('.setup');

@@ -8,10 +8,10 @@
 
   var fireballColor = document.querySelector('.setup-fireball-wrap');
   var fireball = document.querySelector('.setup-fireball');
-  var inputFireball = wizardSetup.querySelector('input[name = "fireball-color"]');
+  var inputFireball = document.querySelector('input[name = "fireball-color"]');
 
   var wizardEyes = document.querySelector('.wizard-eyes');
-  var inputWizardEyes = wizardSetup.querySelector('input[name = "eyes-color"]');
+  var inputWizardEyes = document.querySelector('input[name = "eyes-color"]');
 
   var onElementPress = function (elementTitle, arraySource, elementInput) {
     if (elementTitle.tagName === 'DIV') {
