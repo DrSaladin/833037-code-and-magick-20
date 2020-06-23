@@ -4,10 +4,10 @@
   var setupForm = document.querySelector('.setup-wizard-form');
   window.utility.setAttribute(setupForm, 'action', 'https://javascript.pages.academy/code-and-magick');
 
-  var userAvatar = document.querySelector('input[name = "avatar"]');
+  var userAvatar = setupForm.querySelector('input[name = "avatar"]');
   window.utility.setAttribute(userAvatar, 'accept', 'image/png, image/jpeg');
 
-  var userNameInput = document.querySelector('.setup-user-name');
+  var userNameInput = setupForm.querySelector('.setup-user-name');
   window.utility.setAttribute(userNameInput, 'minlength', window.utility.MIN_NAME_LENGTH);
 
 

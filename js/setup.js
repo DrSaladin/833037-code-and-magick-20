@@ -39,4 +39,3 @@ closeButton.addEventListener('keydown', onPopupEnterPress);
 
 var formOpenIcon = document.querySelector('.setup-open-icon');
 window.utility.setAttribute(formOpenIcon, 'tabindex', 0);
-
