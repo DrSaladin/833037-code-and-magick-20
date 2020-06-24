@@ -4,14 +4,14 @@
 
   var wizardSetup = document.querySelector('.setup');
   var inputWizardCoat = wizardSetup.querySelector('input[name = "coat-color"]');
-  var wizardCoat = document.querySelector('.wizard-coat');
+  var wizardCoat = wizardSetup.querySelector('.wizard-coat');
 
-  var fireballColor = document.querySelector('.setup-fireball-wrap');
-  var fireball = document.querySelector('.setup-fireball');
-  var inputFireball = document.querySelector('input[name = "fireball-color"]');
+  var fireballColor = wizardSetup.querySelector('.setup-fireball-wrap');
+  var fireball = wizardSetup.querySelector('.setup-fireball');
+  var inputFireball = wizardSetup.querySelector('input[name = "fireball-color"]');
 
-  var wizardEyes = document.querySelector('.wizard-eyes');
-  var inputWizardEyes = document.querySelector('input[name = "eyes-color"]');
+  var wizardEyes = wizardSetup.querySelector('.wizard-eyes');
+  var inputWizardEyes = wizardSetup.querySelector('input[name = "eyes-color"]');
 
   var onElementPress = function (elementTitle, arraySource, elementInput) {
     if (elementTitle.tagName === 'DIV') {
@@ -38,7 +38,7 @@
 
   toggleElementEvents();
 
-  var wizardList = document.querySelector('.setup-similar-list');
+  var wizardList = wizardSetup.querySelector('.setup-similar-list');
 
   var wizardTemplate = document.querySelector('#similar-wizard-template')
     .content

@@ -4,13 +4,13 @@
 
   var wizardSetup = document.querySelector('.setup');
 
-  var closeButton = document.querySelector('.setup-close');
+  var closeButton = wizardSetup.querySelector('.setup-close');
   var openButton = document.querySelector('.setup-open');
 
 
   document.querySelector('.setup-similar').classList.remove('hidden');
 
-  var wizardSetupDragHandle = document.querySelector('.upload');
+  var wizardSetupDragHandle = wizardSetup.querySelector('.upload');
   wizardSetupDragHandle.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
