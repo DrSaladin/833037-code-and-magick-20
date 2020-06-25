@@ -2,14 +2,13 @@
 
 (function () {
   var setupForm = document.querySelector('.setup-wizard-form');
-  window.utils.setAttribute(setupForm, 'action', 'https://javascript.pages.academy/code-and-magick');
+  setupForm.setAttribute('action', 'https://javascript.pages.academy/code-and-magick');
 
   var userAvatar = setupForm.querySelector('input[name = "avatar"]');
-  window.utils.setAttribute(userAvatar, 'accept', 'image/png, image/jpeg');
+  userAvatar.setAttribute('accept', 'image/png, image/jpeg');
 
   var inputUserName = setupForm.querySelector('.setup-user-name');
-  window.utils.setAttribute(inputUserName, 'minlength', window.utils.MIN_NAME_LENGTH);
-
+  inputUserName.setAttribute('minlength', window.utils.MIN_NAME_LENGTH);
 
   inputUserName.addEventListener('invalid', function () {
     if (inputUserName.validity.valueMissing) {
