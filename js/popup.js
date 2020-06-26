@@ -2,11 +2,13 @@
 
 (function () {
 
-  document.querySelector('.setup-similar').classList.remove('hidden');
-
-  var openButton = document.querySelector('.setup-open');
   var wizardSetup = document.querySelector('.setup');
-  var closeButton = document.querySelector('.setup-close');
+
+  var closeButton = wizardSetup.querySelector('.setup-close');
+  var openButton = document.querySelector('.setup-open');
+
+
+  document.querySelector('.setup-similar').classList.remove('hidden');
 
 
   var onPopupEscPress = function (evt) {
@@ -24,6 +26,8 @@
 
   var toggleWizardSetup = function () {
     wizardSetup.classList.toggle('hidden');
+    wizardSetup.style.top = '80px';
+    wizardSetup.style.left = '50%';
     if (wizardSetup.classList.contains('hidden')) {
       document.removeEventListener('keydown', onPopupEscPress);
     } else {
