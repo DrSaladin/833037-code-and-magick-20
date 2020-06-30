@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  window.save = function (data, onLoad, onError) {
+  window.save = function (data, onError, onLoad) {
     var URL = 'https://javascript.pages.academy/code-and-magick';
     var StatusCode = {
       OK: 200,
@@ -14,10 +14,8 @@
     xhr.addEventListener('load', function () {
       if (xhr.status === StatusCode.OK) {
         onLoad(xhr.response);
-        console.log('save.ok');
       } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
-        console.log('save.fail');
       }
     });
     xhr.addEventListener('error', function () {
@@ -47,10 +45,8 @@
     xhr.addEventListener('load', function () {
       if (xhr.status === StatusCode.OK) {
         onLoad(xhr.response);
-        console.log('load.ok');
       } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
-        console.log('load.fail');
       }
     });
     xhr.addEventListener('error', function () {

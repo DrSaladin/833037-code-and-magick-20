@@ -46,7 +46,7 @@
   window.load(successHandler, errorHandler);
 
   var submitHandler = function (evt) {
-    window.save(new FormData(setupForm), function () {
+    window.save(new FormData(setupForm), errorHandler, function () {
       wizardSetup.classList.add('hidden');
     });
     evt.preventDefault();
