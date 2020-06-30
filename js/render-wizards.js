@@ -10,25 +10,6 @@
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
   var wizardQuantity = 4;
-  /*
-  var renderWizard = function (wizard) {
-    var wizardElement = window.createWizards.wizardTemplate.cloneNode(true);
-
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name + ' ' + wizard.familyName;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-
-    return wizardElement;
-  };
-
-
-  var fragment = document.createDocumentFragment();
-  for (var i = 0; i < window.createWizards.createWizard(window.utils.wizardQuantity).length; i++) {
-    fragment.appendChild(renderWizard(window.createWizards.createWizard(window.utils.wizardQuantity)[i]));
-  }
-
-  window.createWizards.wizardList.appendChild(fragment);
-*/
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -39,7 +20,7 @@
     return wizardElement;
   };
 
-  window.load(function (wizards) {
+  var successHandler = function (wizards) {
     var fragment = document.createDocumentFragment();
 
     for (var i = 0; i < wizardQuantity; i++) {
@@ -48,13 +29,29 @@
     similarListElement.appendChild(fragment);
 
     wizardSetup.querySelector('.setup-similar').classList.remove('hidden');
-  }, function () { });
+  };
 
+  var errorHandler = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
 
-  setupForm.addEventListener('submit', function (evt) {
-    window.save(new FormData(setupForm), function (response) {
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  window.load(successHandler, errorHandler);
+
+  var submitHandler = function (evt) {
+    window.save(new FormData(setupForm), function () {
       wizardSetup.classList.add('hidden');
     });
     evt.preventDefault();
-  });
+  };
+
+
+  setupForm.addEventListener('submit', submitHandler, errorHandler);
 })();
