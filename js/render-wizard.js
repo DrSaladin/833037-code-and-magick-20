@@ -10,19 +10,16 @@
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+    wizardElement.querySelector('.setup-similar-label').innerText = wizard.name;
     wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorEyes;
-    // wizardElement.querySelector('.setup-fireball').style.background = wizard.colorFireball;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return wizardElement;
   };
 
-  var similarList = document.querySelector('.setup-similar-list');
-
-  window.renderWizardModel = function (data) {
+  window.render = function (data) {
     var takeNumber = data.length > wizardQuantity ? wizardQuantity : data.length;
-    similarList.innerHTML = '';
+    similarListElement.innerHTML = '';
 
     for (var i = 0; i < takeNumber; i++) {
       similarListElement.appendChild(renderWizard(data[i]));

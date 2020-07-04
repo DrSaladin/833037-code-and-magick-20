@@ -39,11 +39,11 @@
   openButton.addEventListener('click', toggleWizardSetup);
   openButton.addEventListener('keydown', onPopupEnterPress);
 
-  window.utils.setAttribute(closeButton, 'tabindex', 0);
+  window.setAttribute(closeButton, 'tabindex', 0);
   closeButton.addEventListener('click', toggleWizardSetup);
   closeButton.addEventListener('keydown', onPopupEnterPress);
 
   var formOpenIcon = document.querySelector('.setup-open-icon');
-  window.utils.setAttribute(formOpenIcon, 'tabindex', 0);
+  window.setAttribute(formOpenIcon, 'tabindex', 0);
 
 })();

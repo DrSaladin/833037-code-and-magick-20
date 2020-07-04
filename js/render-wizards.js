@@ -1,12 +1,12 @@
 'use strict';
 
 (function () {
-
   var wizardSetup = document.querySelector('.setup');
   var setupForm = wizardSetup.querySelector('.setup-wizard-form');
 
   var coatColor = 'rgb(101, 137, 164)';
   var eyesColor = 'black';
+  var fireballColor = '#ee4830';
   var wizards = [];
 
   var getRank = function (wizard) {
@@ -22,17 +22,25 @@
     return rank;
   };
 
-  var updateWizards = function () {
-    window.renderWizardModel(wizards.slice().
-      sort(function (left, right) {
-        var rankDiff = getRank(right) - getRank(left);
-        if (rankDiff === 0) {
-          rankDiff = wizards.indexOf(left) - wizards.indexOf(right);
-        }
-        return rankDiff;
-      }));
+  var namesComparator = function (left, right) {
+    if (left > right) {
+      return 1;
+    } else if (left < right) {
+      return -1;
+    } else {
+      return 0;
+    }
   };
 
+  var updateWizards = function () {
+    window.render(wizards.sort(function (left, right) {
+      var rankDiff = getRank(right) - getRank(left);
+      if (rankDiff === 0) {
+        rankDiff = namesComparator(left.name, right.name);
+      }
+      return rankDiff;
+    }));
+  };
 
   window.wizard.onEyesChange = function (color) {
     eyesColor = color;
@@ -44,12 +52,15 @@
     window.debounce(updateWizards);
   };
 
+  window.wizard.onFireballChange = function (color) {
+    fireballColor = color;
+    window.debounce(updateWizards);
+  };
 
   var successHandler = function (data) {
     wizards = data;
     updateWizards();
   };
-
 
   var errorHandler = function (errorMessage) {
     var node = document.createElement('div');
