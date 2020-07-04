@@ -5,31 +5,51 @@
   var wizardSetup = document.querySelector('.setup');
   var setupForm = wizardSetup.querySelector('.setup-wizard-form');
 
-  var similarListElement = wizardSetup.querySelector('.setup-similar-list');
+  var coatColor = 'rgb(101, 137, 164)';
+  var eyesColor = 'black';
+  var wizards = [];
 
-  var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
+  var getRank = function (wizard) {
+    var rank = 0;
 
-  var wizardQuantity = 4;
-
-  var renderWizard = function (wizard) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
-
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
-
-    return wizardElement;
-  };
-
-  var successHandler = function (wizards) {
-    var fragment = document.createDocumentFragment();
-
-    for (var i = 0; i < wizardQuantity; i++) {
-      fragment.appendChild(renderWizard(wizards[i]));
+    if (wizard.colorCoat === coatColor) {
+      rank += 2;
     }
-    similarListElement.appendChild(fragment);
+    if (wizard.colorEyes === eyesColor) {
+      rank += 1;
+    }
 
-    wizardSetup.querySelector('.setup-similar').classList.remove('hidden');
+    return rank;
   };
+
+  var updateWizards = function () {
+    window.renderWizardModel(wizards.slice().
+      sort(function (left, right) {
+        var rankDiff = getRank(right) - getRank(left);
+        if (rankDiff === 0) {
+          rankDiff = wizards.indexOf(left) - wizards.indexOf(right);
+        }
+        return rankDiff;
+      }));
+  };
+
+
+  window.wizard.onEyesChange = function (color) {
+    eyesColor = color;
+    window.debounce(updateWizards);
+  };
+
+  window.wizard.onCoatChange = function (color) {
+    coatColor = color;
+    window.debounce(updateWizards);
+  };
+
+
+  var successHandler = function (data) {
+    wizards = data;
+    updateWizards();
+  };
+
 
   var errorHandler = function (errorMessage) {
     var node = document.createElement('div');
