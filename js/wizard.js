@@ -22,23 +22,14 @@
     'purple'
   ];
 
-  var FIREBALL_COLORS = [
-    '#ee4830',
-    '#30a8ee',
-    '#5ce6c0',
-    '#e848d5',
-    '#e6e848'
-  ];
-
   var wizardSetup = document.querySelector('.setup');
   var inputWizardCoat = wizardSetup.querySelector('input[name = "coat-color"]');
   var inputWizardEyes = wizardSetup.querySelector('input[name = "eyes-color"]');
 
 
   var wizard = {
-    onEyesChange: function (color) { },
-    onCoatChange: function (color) { },
-    onFireballChange: function (color) { }
+    onEyesChange: function () { },
+    onCoatChange: function () { }
   };
 
   var getRandomElement = function (array) {
@@ -64,6 +55,5 @@
     wizard.onEyesChange(newColor);
   });
 
-
-  return window.wizard = wizard;
+  return (window.wizard = wizard);
 })();

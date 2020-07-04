@@ -6,7 +6,6 @@
 
   var coatColor = 'rgb(101, 137, 164)';
   var eyesColor = 'black';
-  var fireballColor = '#ee4830';
   var wizards = [];
 
   var getRank = function (wizard) {
@@ -49,11 +48,6 @@
 
   window.wizard.onCoatChange = function (color) {
     coatColor = color;
-    window.debounce(updateWizards);
-  };
-
-  window.wizard.onFireballChange = function (color) {
-    fireballColor = color;
     window.debounce(updateWizards);
   };
 
