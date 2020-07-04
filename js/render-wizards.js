@@ -51,6 +51,11 @@
     window.debounce(updateWizards);
   };
 
+  window.wizard.onFireballChange = function (color) {
+    coatColor = color;
+    window.debounce(updateWizards);
+  };
+
   var successHandler = function (data) {
     wizards = data;
     updateWizards();
